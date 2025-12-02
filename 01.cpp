@@ -13,7 +13,8 @@ int main() {
     vector<string> lines;
 
     int dial = 50;
-    int password = 0;
+    int password1 = 0;
+    int password2 = 0;
 
     if (!file.is_open()) {
         cerr << "Could not open file.\n";
@@ -44,35 +45,26 @@ int main() {
             }
 
             if (dial == 0) {
-                password++;
+                password2++;
             }
         }
 
-        // int extra = dial == 0 ? 0 : 1;
-        // if (dir == -1 && amount > dial) {
-        //     password += (amount - dial) / 100 + extra;
-        // }
-        //
-        // if (dir == 1 && amount > 100 - dial) {
-        //     password += (amount + dial) / 100;
-        // }
-        //
-        // dial += amount * dir;
-        //
-        // dial %= 100;
-        //
-        // if (dial < 0) {
-        //     dial = 100 + dial;
-        // }
-        //
-        // if (dial == 0) {
-        //     password++;
-        // }
+        dial += amount * dir;
+        dial %= 100;
+
+        if (dial < 0) {
+            dial = 100 + dial;
+        }
+
+        if (dial == 0) {
+            password1++;
+        }
 
         cout << "Dial: " << dial << "\n";
     }
 
-    cout << "Password: " << password;
+    cout << "Password1: " << password1;
+    cout << "Password2: " << password2;
 
     return 0;
 }
