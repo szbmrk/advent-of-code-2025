@@ -37,11 +37,13 @@ int main() {
 
             if (dial > 99) {
                 dial = 0;
-                password++;
             }
 
             if (dial < 0) {
                 dial = 99;
+            }
+
+            if (dial == 0) {
                 password++;
             }
         }
