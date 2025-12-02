@@ -45,6 +45,7 @@ int main() {
     }
 
     // 2. feladat
+    password1 = 0;
     dial = 50;
     for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
@@ -64,6 +65,10 @@ int main() {
             if (dial == 0) {
                 password2++;
             }
+        }
+
+        if (dial == 0) {
+            password1++;
         }
     }
 
