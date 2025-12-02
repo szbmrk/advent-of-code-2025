@@ -28,8 +28,23 @@ int main() {
     file.close();
 
     for (const auto& l : lines) {
-        cout << "Step: " << l.substr(0, 1) << l.substr(1) << " ";
+        int dir = l.starts_with('L') ? -1 : 1;
+        int amount = stoi(l.substr(1));
 
+        dial += amount * dir;
+        dial %= 100;
+
+        if (dial < 0) {
+            dial = 100 + dial;
+        }
+
+        if (dial == 0) {
+            password1++;
+        }
+    }
+
+    dial = 50;
+    for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
         int amount = stoi(l.substr(1));
 
@@ -48,23 +63,10 @@ int main() {
                 password2++;
             }
         }
-
-        dial += amount * dir;
-        dial %= 100;
-
-        if (dial < 0) {
-            dial = 100 + dial;
-        }
-
-        if (dial == 0) {
-            password1++;
-        }
-
-        cout << "Dial: " << dial << "\n";
     }
 
     cout << "Password1: " << password1;
-    cout << "Password2: " << password2;
+    cout << "\nPassword2: " << password2;
 
     return 0;
 }
