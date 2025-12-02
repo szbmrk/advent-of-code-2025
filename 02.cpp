@@ -54,10 +54,10 @@ int main() {
     int64_t res1 = 0;
     int64_t res2 = 0;
 
-    for (const auto& idRange : data) {
-        auto dash_pos = idRange.find('-');
-        int64_t start = stol(idRange.substr(0, dash_pos));
-        int64_t end = stol(idRange.substr(dash_pos + 1));
+    for (const auto& id_range : data) {
+        auto dash_pos = id_range.find('-');
+        int64_t start = stol(id_range.substr(0, dash_pos));
+        int64_t end = stol(id_range.substr(dash_pos + 1));
 
         auto possible_ids = get_possible_ids(start, end);
 
