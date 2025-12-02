@@ -17,7 +17,7 @@ int main() {
     int password2 = 0;
 
     if (!file.is_open()) {
-        cerr << "Could not open file.\n";
+        cerr << "Could not open file\n";
         return 1;
     }
 
