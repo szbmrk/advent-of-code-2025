@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <cstdint>
 #include <fstream>
 #include <iostream>
@@ -61,6 +60,7 @@ int main() {
         int64_t end = stol(idRange.substr(dashPos + 1));
 
         auto possibleIds = get_possible_ids(start, end);
+
         for (const auto id : possibleIds) {
             string str = to_string(id);
             auto half = str.size() / 2;
@@ -71,20 +71,39 @@ int main() {
 
         for (const auto id : possibleIds) {
             string str = to_string(id);
-            bool match = false;
-            for (size_t i = 2; i < str.size(); i++) {
-                for (size_t j = 0; j < i; j++) {
-                }
-            }
 
-            if (match) {
-                res2 += id;
+            auto sequence_length = str.size() / 2;
+            while (sequence_length != 0) {
+                if (str.size() % sequence_length != 0) {
+                    sequence_length--;
+                    continue;
+                }
+
+                vector<string> splitted_parts;
+                for (size_t i = 0; i < str.size(); i += sequence_length) {
+                    splitted_parts.push_back(str.substr(i, sequence_length));
+                }
+
+                bool match = true;
+                for (size_t i = 1; i < splitted_parts.size(); i++) {
+                    if (splitted_parts[i - 1] != splitted_parts[i]) {
+                        match = false;
+                        break;
+                    }
+                }
+
+                if (match) {
+                    res2 += id;
+                    break;
+                }
+
+                sequence_length--;
             }
         }
     }
 
     print("Result1: {}", res1);
-    print("Result2: {}", res2);
+    print("\nResult2: {}", res2);
 
     return 0;
 }
