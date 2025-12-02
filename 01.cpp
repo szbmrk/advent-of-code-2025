@@ -5,9 +5,9 @@
 
 using namespace std;
 
-const string INPUT_FILE = "input/01.txt";
-
 int main() {
+    const string INPUT_FILE = "input/01.txt";
+
     ifstream file(INPUT_FILE);
     string line;
     vector<string> lines;
@@ -43,7 +43,6 @@ int main() {
     //     }
     // }
 
-    dial = 50;
     for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
         int amount = stoi(l.substr(1));
