@@ -27,6 +27,7 @@ int main() {
 
     file.close();
 
+    // 1. feladat
     for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
         int amount = stoi(l.substr(1));
@@ -43,6 +44,7 @@ int main() {
         }
     }
 
+    // 2. feladat
     dial = 50;
     for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
