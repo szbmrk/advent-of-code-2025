@@ -1,0 +1,5 @@
+/obj/
+/build/
+a.out
+.env
+

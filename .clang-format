@@ -1,0 +1,13 @@
+BasedOnStyle: Chromium
+IndentWidth: 4
+SortIncludes: true
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^".*"'
+    Priority: 1
+  - Regex: '^<.*\.h>'
+    Priority: 2
+  - Regex: '^<.*\.hp>'
+    Priority: 3
+  - Regex: '^<.*>'
+    Priority: 4
