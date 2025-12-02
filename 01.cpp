@@ -27,25 +27,22 @@ int main() {
 
     file.close();
 
-    // 1. feladat
-    for (const auto& l : lines) {
-        int dir = l.starts_with('L') ? -1 : 1;
-        int amount = stoi(l.substr(1));
+    // for (const auto& l : lines) {
+    //     int dir = l.starts_with('L') ? -1 : 1;
+    //     int amount = stoi(l.substr(1));
+    //
+    //     dial += amount * dir;
+    //     dial %= 100;
+    //
+    //     if (dial < 0) {
+    //         dial = 100 + dial;
+    //     }
+    //
+    //     if (dial == 0) {
+    //         password1++;
+    //     }
+    // }
 
-        dial += amount * dir;
-        dial %= 100;
-
-        if (dial < 0) {
-            dial = 100 + dial;
-        }
-
-        if (dial == 0) {
-            password1++;
-        }
-    }
-
-    // 2. feladat
-    password1 = 0;
     dial = 50;
     for (const auto& l : lines) {
         int dir = l.starts_with('L') ? -1 : 1;
