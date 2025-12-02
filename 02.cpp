@@ -55,13 +55,13 @@ int main() {
     int64_t res2 = 0;
 
     for (const auto& idRange : data) {
-        auto dashPos = idRange.find('-');
-        int64_t start = stol(idRange.substr(0, dashPos));
-        int64_t end = stol(idRange.substr(dashPos + 1));
+        auto dash_pos = idRange.find('-');
+        int64_t start = stol(idRange.substr(0, dash_pos));
+        int64_t end = stol(idRange.substr(dash_pos + 1));
 
-        auto possibleIds = get_possible_ids(start, end);
+        auto possible_ids = get_possible_ids(start, end);
 
-        for (const auto id : possibleIds) {
+        for (const auto id : possible_ids) {
             string str = to_string(id);
             auto half = str.size() / 2;
             if (str.substr(0, half) == str.substr(half)) {
@@ -69,7 +69,7 @@ int main() {
             }
         }
 
-        for (const auto id : possibleIds) {
+        for (const auto id : possible_ids) {
             string str = to_string(id);
 
             auto sequence_length = str.size() / 2;
