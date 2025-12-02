@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <print>
 #include <string>
 #include <vector>
 
@@ -12,10 +13,6 @@ int main() {
     string line;
     vector<string> lines;
 
-    int dial = 50;
-    int password1 = 0;
-    int password2 = 0;
-
     if (!file.is_open()) {
         cerr << "Could not open file\n";
         return 1;
@@ -26,6 +23,10 @@ int main() {
     }
 
     file.close();
+
+    int dial = 50;
+    int password1 = 0;
+    int password2 = 0;
 
     // for (const auto& l : lines) {
     //     int dir = l.starts_with('L') ? -1 : 1;
@@ -68,8 +69,8 @@ int main() {
         }
     }
 
-    cout << "Password1: " << password1;
-    cout << "\nPassword2: " << password2;
+    print("Password1: {}", password1);
+    print("Password2: {}", password2);
 
     return 0;
 }
