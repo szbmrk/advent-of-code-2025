@@ -70,7 +70,7 @@ int main() {
     }
 
     print("Password1: {}", password1);
-    print("Password2: {}", password2);
+    print("\nPassword2: {}", password2);
 
     return 0;
 }
