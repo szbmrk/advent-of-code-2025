@@ -1,3 +1,5 @@
+#include <cstdint>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <print>
@@ -8,12 +10,13 @@ using namespace std;
 
 namespace {
 
-size_t index_of_largest_num(const string& bank) {
-    int largest = static_cast<int>(bank[0]);
-    size_t largest_index = 0;
+size_t index_of_largest(const string& bank, size_t from = 0) {
+    int largest = -1;
+    size_t largest_index = -1;
 
-    for (size_t i = 1; i < bank.size(); i++) {
-        int current = static_cast<int>(bank[i]);
+    for (size_t i = from; i < bank.size(); i++) {
+        int current = bank[i] - '0';
+
         if (current > largest) {
             largest = current;
             largest_index = i;
@@ -26,7 +29,7 @@ size_t index_of_largest_num(const string& bank) {
 }  // namespace
 
 int main() {
-    const string INPUT_FILE = "input/03-example.txt";
+    const string INPUT_FILE = "input/03.txt";
 
     ifstream file(INPUT_FILE);
     string line;
@@ -44,11 +47,41 @@ int main() {
     file.close();
 
     int res1 = 0;
-    int res2 = 0;
+    int64_t res2 = 0;
 
     for (const auto& l : lines) {
-        auto largest_index = index_of_largest_num(l);
-        print("{} : {}\n", l, largest_index);
+        // 1. part
+        auto index_of_first = index_of_largest(l.substr(0, l.size() - 1));
+        auto index_of_second = index_of_largest(l, index_of_first + 1);
+
+        int first_largest = l[index_of_first] - '0';
+        int second_largest = l[index_of_second] - '0';
+        int joltage = (first_largest * 10) + second_largest;
+
+        res1 += joltage;
+
+        // 2. part
+        string digits;
+        auto free_digits = l.size() - 12;
+        size_t index_of_first_digit =
+            index_of_largest(l.substr(0, free_digits + 1));
+        digits += to_string(l[index_of_first_digit] - '0');
+
+        free_digits = free_digits - index_of_first_digit;
+        auto prev_index = index_of_first_digit;
+
+        for (size_t i = 1; i < 12; i++) {
+            size_t max_index = prev_index + 1 + free_digits;
+
+            auto index =
+                index_of_largest(l.substr(0, max_index + 1), prev_index + 1);
+
+            free_digits -= index - prev_index - 1;
+            prev_index = index;
+            digits += to_string(l[index] - '0');
+        }
+
+        res2 += stol(digits);
     }
 
     print("Result1: {}", res1);
