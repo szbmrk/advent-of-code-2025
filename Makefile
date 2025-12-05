@@ -21,7 +21,6 @@ run:
 		exit 1; \
 	fi
 	@$(MAKE) --no-print-directory $(BUILD_DIR)/$(filter-out run,$(MAKECMDGOALS))
-	@echo "Running $(filter-out run,$(MAKECMDGOALS))..."
 	@$(BUILD_DIR)/$(filter-out run,$(MAKECMDGOALS))
 
 %:

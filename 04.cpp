@@ -45,7 +45,7 @@ int count_adj(const vector<vector<char>>& matrix,
 }  // namespace
 
 int main() {
-    const string INPUT_FILE = "input/04-example.txt";
+    const string INPUT_FILE = "input/04.txt";
 
     ifstream file(INPUT_FILE);
     vector<vector<char>> matrix;
@@ -69,26 +69,44 @@ int main() {
     int res1 = 0;
     int res2 = 0;
 
-    size_t row = 0;
-    for (const vector<char>& cell_row : matrix) {
-        size_t col = 0;
-        for (char c : cell_row) {
+    // 1. part
+    for (size_t i = 0; i < matrix.size(); i++) {
+        for (size_t j = 0; j < matrix[i].size(); j++) {
+            auto c = matrix[i][j];
             if (c != '@') {
                 continue;
             }
 
-            int adj = count_adj(matrix, col, row, cell_row.size() - 1,
+            int adj = count_adj(matrix, j, i, matrix[i].size() - 1,
                                 matrix.size() - 1);
 
             if (adj < 4) {
                 res1++;
             }
-
-            col++;
         }
+    }
 
-        row++;
-        col = 0;
+    // 2. part
+    bool changed = true;
+    while (changed) {
+        changed = false;
+        for (size_t i = 0; i < matrix.size(); i++) {
+            for (size_t j = 0; j < matrix[i].size(); j++) {
+                auto c = matrix[i][j];
+                if (c != '@') {
+                    continue;
+                }
+
+                int adj = count_adj(matrix, j, i, matrix[i].size() - 1,
+                                    matrix.size() - 1);
+
+                if (adj < 4) {
+                    matrix[i][j] = 'x';
+                    res2++;
+                    changed = true;
+                }
+            }
+        }
     }
 
     print("Result1: {}", res1);
