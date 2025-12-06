@@ -15,7 +15,8 @@ Checks: "*,
         -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
         -google-build-using-namespace,
         -modernize-use-trailing-return-type,
-        -misc-non-private-member-variables-in-classes
+        -misc-non-private-member-variables-in-classes,
+        -modernize-use-nodiscard
 "
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
