@@ -44,7 +44,7 @@ int main() {
         }
     }
 
-    print("{}\n", cols_of_beam);
+    // 1. part
     for (size_t i = 1; i < matrix.size(); i++) {
         for (size_t k = 0; k < cols_of_beam.size();) {
             size_t col = cols_of_beam[k];
@@ -91,6 +91,8 @@ int main() {
             }
         }
     }
+
+    // 2. part
 
     print("Result1: {}", res1);
     print("\nResult2: {}", res2);
